@@ -1,0 +1,38 @@
+<td-layout-nav-list #navList
+      toolbarTitle="Covalent"
+      navigationRoute="/"
+      opened="false"
+      mode="(media.registerQuery('gt-sm') | async) ? 'side' : 'over'"
+      sidenavWidth="(media.registerQuery('gt-xs') | async) ? '350px' : '100%'">
+  <div td-toolbar-content layout="row" flex>
+    <span>Interview Sample</span>
+    <span flex></span>
+  </div>
+  <div layout="row">
+     <div flex="40">
+      <router-outlet></router-outlet>
+     </div>
+     <div flex>
+      <md-select [(ngModel)]="type1"  placeholder="Superior Type">
+        <md-option *ngFor="let type of nodeTypes" [value]="type" ngDefaultControl>
+          {{ type }}
+        </md-option>
+      </md-select>
+      <md-select [(ngModel)]="type2" placeholder="Linked Type">
+        <md-option *ngFor="let type of nodeTypes" [value]="type" ngDefaultControl>
+          {{ type }}
+        </md-option>
+      </md-select>
+      <md-input-container>
+        <input mdInput  [(ngModel)]="limitCount" placeholder="Number of Nodes (ie, 15)" value="10" ngDefaultControl>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput  [(ngModel)]="limitDepth" placeholder="Depth of Search (ie, 5)" value="5" ngDefaultControl>
+      </md-input-container>
+      <button md-raised-button (click)="singleGetNodes()">Run</button>
+    </div>
+  </div>
+  <td-layout-footer-inner>
+    By Matthew Gladney
+  </td-layout-footer-inner>
+</td-layout-nav-list>
